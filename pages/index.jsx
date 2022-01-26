@@ -20,6 +20,7 @@ function Titulo(props) {
 export default function PaginaInicial() {
   // const username = 'germano-beep';
   const [username, setUsername] = React.useState('germano-beep')
+  const [buttonDisabled, setButtonDisabled] = React.useState(false)
   const roteamento = useRouter()
 
   return (
@@ -70,6 +71,10 @@ export default function PaginaInicial() {
               onChange = { function(event){
                 const valor = event.target.value
                 setUsername(valor)
+                if(valor.length>2)
+                  setButtonDisabled(false)
+                else
+                  setButtonDisabled(true)
               }}
               fullWidth
               textFieldColors={{
@@ -82,6 +87,7 @@ export default function PaginaInicial() {
               }}
             />
             <Button
+              disabled = { buttonDisabled }
               type='submit'
               label='Entrar'
               fullWidth
