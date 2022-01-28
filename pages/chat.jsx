@@ -7,6 +7,13 @@ export default function ChatPage() {
     const [message, setMessage] = React.useState('')
     const [messageList, setMessageList] = React.useState([])
 
+    function handleNewMessage(newMessage) {
+      setMessageList([
+        ...messageList,
+           newMessage
+      ])
+      setMessage('')
+    }
     return (
         <Box
             styleSheet={{
@@ -45,9 +52,16 @@ export default function ChatPage() {
                     }}
                 >
 
-                    {/* <MessageList mensagens={[]} /> */}
-                   
-                    {messageList}
+                    <MessageList mensagens={[]} />
+                    
+                    { messageList.map((currentMessage)=>{
+                      console.log(currentMessage)
+                     return(
+                      <li>
+                        {currentMessage}
+                      </li>
+                     )
+                    })}
                     <Box
                         as="form"
                         styleSheet={{
@@ -64,11 +78,7 @@ export default function ChatPage() {
                             onKeyPress = {(event) => {
                               if(event.key === 'Enter'){
                                 event.preventDefault()
-                                setMessageList([
-                                  ...messageList,
-                                     message
-                                ])
-                                setMessage('')
+                                handleNewMessage(message)
                               }
                             }}
                             placeholder="Insira sua mensagem aqui..."
@@ -125,7 +135,7 @@ function MessageList(props) {
         >
 
             <Text
-                key={mensagem.id}
+                // key={mensagem.id}
                 tag="li"
                 styleSheet={{
                     borderRadius: '5px',
@@ -152,7 +162,7 @@ function MessageList(props) {
                         src={`https://github.com/germano-beep.png`}
                     />
                     <Text tag="strong">
-                        {mensagem.de}
+                        {/* {mensagem.de} */}
                     </Text>
                     <Text
                         styleSheet={{
@@ -165,7 +175,7 @@ function MessageList(props) {
                         {(new Date().toLocaleDateString())}
                     </Text>
                 </Box>
-                {mensagem.texto}
+                {/* {mensagem.texto} */}
             </Text>
         </Box>
     )
