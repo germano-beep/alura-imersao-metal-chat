@@ -91,6 +91,14 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
                         />
+                        <button
+                          onClick={(event) =>{
+                            event.preventDefault()
+                            const mensagem = event.target.value;
+                            setMessage(mensagem)
+                            handleNewMessage(message)
+                          }}
+                        >Enviar</button>
                     </Box>
                 </Box>
             </Box>
@@ -103,7 +111,7 @@ function Header() {
         <>
             <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
                 <Text variant='heading5'>
-                    Chat
+                    MetalChat
                 </Text>
                 <Button
                     variant='tertiary'
@@ -172,13 +180,17 @@ function MessageList(props) {
                 >
                     {(new Date().toLocaleDateString())}
                 </Text>
+               
             </Box>
             {message.text}
         </Text>
            )
          })}
 
-            
+          
         </Box>
     )
+ 
+
+    
 }

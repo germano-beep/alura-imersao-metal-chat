@@ -22,6 +22,11 @@ function GlobalStyle() {
       #__next > * {
         flex: 1;
       }
+
+      button{
+        color:#FFFFFF;
+        background-color:#4D208C  
+      }
       /* ./App fit Height */ 
     `}</style>
   );
