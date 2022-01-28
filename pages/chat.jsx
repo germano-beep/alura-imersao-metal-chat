@@ -7,7 +7,12 @@ export default function ChatPage() {
     const [message, setMessage] = React.useState('')
     const [messageList, setMessageList] = React.useState([])
 
-    function handleNewMessage(newMessage) {
+    function handleNewMessage() {
+      const newMessage = {
+        id: message.length-1,
+        from: 'germano-beep',
+        text: message,
+      }
       setMessageList([
         ...messageList,
            newMessage
@@ -52,14 +57,20 @@ export default function ChatPage() {
                     }}
                 >
 
-                    <MessageList mensagens={[]} />
+                    <MessageList messages={[]} />
                     
-                    { messageList.map((currentMessage)=>{
-                      console.log(currentMessage)
+                    { messageList.map((message)=>{
                      return(
-                      <li>
-                        {currentMessage}
-                      </li>
+                     <>
+                        <li id ={message.id}>
+                          {message.from}:
+                        </li>
+                         <li>
+                          {message.text}
+                       </li>
+                     </>
+
+
                      )
                     })}
                     <Box
